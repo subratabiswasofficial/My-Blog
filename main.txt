@@ -1,0 +1,25 @@
+frontend libraries
+    @material-ui/core:          4.11.3          // ui
+    @material-ui/icons:         4.11.2          // ui
+    @material-ui/lab:           4.0.0-alpha.57  // ui
+    axios:                      0.21.1          // request
+    fontsource-roboto:          4.0.0           // font
+    react:                      17.0.1          // framework
+    react-dom:                  17.0.1          // framework
+    react-redux:                7.2.2           // state management
+    react-router:               5.2.0           // routing
+    react-router-dom:           5.2.0           // routing 
+    redux:                      4.0.5           // state management
+    redux-devtools-extension:   2.13.9          // chrome extension
+    redux-thunk:                2.3.0           // middleware
+
+backend libraries
+    bcrypt:             5.0.1   // password hasing
+    dotenv:             8.2.0   // env
+    express:            4.17.1  // server
+    express-validator:  6.10.0  // validator
+    jsonwebtoken:       8.5.1   //  auth
+    moment:             2.29.1  // time formate
+    mongoose:           5.12.0  // db managemant
+    concurrently:       6.0.0   // runner
+    nodemon:            2.0.7   // development server runner
