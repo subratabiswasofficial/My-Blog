@@ -1,6 +1,7 @@
 // main Dependencies
 const express = require("express");
 const app = express();
+const path = require("path");
 
 // test Dependencies
 const auth = require("./middleware/auth");
@@ -19,15 +20,14 @@ app.use(express.json());
 app.use("/api", require("./api/routes/users"));
 app.use("/api", require("./api/routes/posts"));
 
-//============OTHERS=============
-app.get("/", (req, res) => {
-  res.send("api running");
-});
-
-//==========TEST ROUTES==========
-app.get("/amiauthed", auth, (req, res) => {
-  res.send(req.user);
-});
+//==========MAIN SETUP==========
+if (process.env.NODE_ENV === "production") {
+  // Set static folder
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 // Server listen util
 app.listen(process.env.PORT || 5000, () => {
