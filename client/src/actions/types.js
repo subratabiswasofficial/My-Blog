@@ -20,6 +20,7 @@ export const LOAD_MY_POSTS = "LOAD_MY_POSTS";
 export const POST_AUTHOR = "POST_AUTHOR";
 export const POST_NOT_AUTH = "POST_NOT_AUTH";
 
+export const POST_CLEAR = "POST_CLEAR";
 export const POST_LIKE_LOAD = "POST_LIKE_LOAD";
 export const POST_LIKE_ERROR = "POST_LIKE_ERROR";
 

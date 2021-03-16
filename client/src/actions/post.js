@@ -12,6 +12,7 @@ import {
   COMMENT_ADDED,
   COMMENT_REMOVED,
   CLEAR_POSTS,
+  POST_CLEAR,
 } from "./types";
 
 // Post Create
@@ -145,6 +146,17 @@ export const fetchSinglePost = (id) => async (dispatch, getState) => {
       type: POST_ERROR,
     });
     dispatch(setAlert("No Post Found", "error"));
+  }
+};
+
+// Clear single post
+export const clearSinglePost = () => (dispatch) => {
+  try {
+    dispatch({
+      type: POST_CLEAR,
+    });
+  } catch (error) {
+    dispatch(setAlert("Error Clearing Post", "error"));
   }
 };
 

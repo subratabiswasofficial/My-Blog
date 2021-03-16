@@ -17,7 +17,13 @@ import { makeStyles } from "@material-ui/core";
 
 // externals
 import { setAlert } from "../../actions/alert";
-import { createPost, updatePost, deletePost } from "../../actions/post";
+import {
+  createPost,
+  updatePost,
+  deletePost,
+  clearSinglePost,
+} from "../../actions/post";
+import Spinner from "../layout/Spinner";
 
 // css
 const useStyles = makeStyles({
@@ -49,6 +55,8 @@ const EditPost = ({
   updatePost,
   setAlert,
   deletePost,
+  loading,
+  clearSinglePost,
 }) => {
   // utils
   const classes = useStyles();
@@ -73,7 +81,10 @@ const EditPost = ({
   };
 
   useEffect(() => {
-    if (match.params.id) fetchPost();
+    if (match.params.id) {
+      clearSinglePost();
+      fetchPost();
+    }
   }, [match.params.id]);
 
   const { title, img, content } = formData;
@@ -187,7 +198,7 @@ EditPost.propTypes = {
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
-  loading: state.auth.loading,
+  loading: state.singlepost.loading,
 });
 
 export default connect(mapStateToProps, {
@@ -195,4 +206,5 @@ export default connect(mapStateToProps, {
   setAlert,
   updatePost,
   deletePost,
+  clearSinglePost,
 })(withRouter(EditPost));

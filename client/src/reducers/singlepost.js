@@ -7,6 +7,7 @@ import {
   POST_LIKE_ERROR,
   COMMENT_ADDED,
   COMMENT_REMOVED,
+  POST_CLEAR,
 } from "../actions/types";
 
 const initialState = {
@@ -59,6 +60,7 @@ const singlepostReducer = function (state = initialState, { type, payload }) {
         ...payload,
       };
     case POST_ERROR:
+    case POST_CLEAR:
       return initialState;
     default:
       return state;

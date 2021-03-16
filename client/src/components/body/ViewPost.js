@@ -32,7 +32,9 @@ import {
   unlikePost,
   addComment,
   removeComment,
+  clearSinglePost,
 } from "../../actions/post";
+import Spinner from "../layout/Spinner";
 
 // css
 const useStyles = makeStyles({
@@ -68,6 +70,8 @@ const ViewPost = ({
   addComment,
   user,
   removeComment,
+  loading,
+  clearSinglePost,
 }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -100,11 +104,14 @@ const ViewPost = ({
 
   // use effects
   useEffect(() => {
+    clearSinglePost();
     fetchSinglePost(match.params.id);
     fetchLikeAndComments();
   }, [match.params.id]);
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       {!post.loading && (
         <Fragment>
@@ -272,6 +279,7 @@ const ViewPost = ({
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   post: state.singlepost,
+  loading: state.singlepost.loading,
   isAuthenticated: state.auth.isAuthenticated,
 });
 
@@ -281,4 +289,5 @@ export default connect(mapStateToProps, {
   unlikePost,
   addComment,
   removeComment,
+  clearSinglePost,
 })(ViewPost);
