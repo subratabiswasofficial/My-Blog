@@ -15,6 +15,8 @@ const useStyles = makeStyles({
     height: "200px",
     display: "flex",
     justifyContent: "center",
+    marginTop: "50px",
+    marginBottom: "50px",
   },
   media: {
     width: "150px",

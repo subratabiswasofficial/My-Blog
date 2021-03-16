@@ -393,7 +393,6 @@ router.post(
       const updatedPost = await Post.findById(req.params.post_id);
       return res.status(200).json(updatedPost);
     } catch (error) {
-      console.log(error.message);
       return error.kind === "ObjectId"
         ? res.status(400).json({ errors: [{ msg: "post not found" }] })
         : res.status(500).send("server error");
@@ -447,7 +446,6 @@ router.delete("/posts/comment/:post_id/:cmt_id", auth, async (req, res) => {
 router.get("/allposts/", async (req, res) => {
   try {
     const page = Number(req.query.page) ? Number(req.query.page) : 0;
-    console.log(page);
     const posts = await Post.find()
       .sort({ date: -1 })
       .skip(page * 6)
