@@ -21,6 +21,7 @@ import Alert from "./components/layout/AlertMaker";
 // utils
 import { loadUser } from "./actions/auth";
 import PrivateRoute from "./routing/PrivateRoute";
+import Spinner from "./components/layout/Spinner";
 
 // auth
 if (localStorage.token) {
@@ -43,6 +44,7 @@ const App = () => {
           <Route path="/" component={Home} exact />
           <Route path="/signin" component={Login} exact />
           <Route path="/signup" component={Register} exact />
+          <Route path="/spinner" component={Spinner} exact />
           <PrivateRoute path="/editpost" component={EditPost} exact />
           <PrivateRoute path="/editpost/:id" component={EditPost} exact />
           <PrivateRoute path="/myposts" component={MyPosts} exact />

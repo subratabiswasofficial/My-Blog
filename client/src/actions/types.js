@@ -13,6 +13,7 @@ export const PROFILE_ERROR = "PROFILE_ERROR";
 
 export const LOAD_POST = "LOAD_POST";
 
+export const CLEAR_POSTS = "CLEAR_POSTS";
 export const POST_ERROR = "POST_ERROR";
 export const LOAD_ALL_POSTS = "LOAD_ALL_POSTS";
 export const LOAD_MY_POSTS = "LOAD_MY_POSTS";

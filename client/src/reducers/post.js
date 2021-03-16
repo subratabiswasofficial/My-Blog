@@ -1,12 +1,25 @@
-import { LOAD_ALL_POSTS, LOAD_MY_POSTS } from "../actions/types";
+import { LOAD_ALL_POSTS, LOAD_MY_POSTS, CLEAR_POSTS } from "../actions/types";
 
-const initialState = [];
+const initialState = {
+  posts: [],
+  loading: true,
+};
 
 const postReducer = function (state = initialState, { type, payload }) {
   switch (type) {
     case LOAD_ALL_POSTS:
     case LOAD_MY_POSTS:
-      return [...payload];
+      return {
+        ...state,
+        posts: [...payload],
+        loading: false,
+      };
+    case CLEAR_POSTS:
+      return {
+        ...state,
+        posts: [],
+        loading: true,
+      };
     default:
       return state;
   }

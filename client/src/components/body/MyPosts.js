@@ -8,9 +8,10 @@ import { Fragment, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 // externals
-import { fetchMyPosts } from "../../actions/post";
+import { fetchMyPosts, clearAllposts } from "../../actions/post";
 import PostCard from "../layout/PostCard";
 import LoginCard from "../layout/LoginCard";
+import Spinner from "../layout/Spinner";
 
 // css
 const useStyles = makeStyles({
@@ -20,17 +21,27 @@ const useStyles = makeStyles({
   },
 });
 
-const MyPosts = ({ history, location, posts, fetchMyPosts }) => {
+const MyPosts = ({
+  history,
+  location,
+  posts,
+  fetchMyPosts,
+  clearAllposts,
+  loading,
+}) => {
   // utils
   const classes = useStyles();
   const page = location.search.slice(6);
 
   // useEffect
   useEffect(() => {
+    clearAllposts();
     fetchMyPosts(page);
   }, [location.search]);
 
-  return (
+  return loading ? (
+    <Spinner />
+  ) : (
     <Fragment>
       <Container maxWidth="lg">
         <Grid container spacing={4}>
@@ -96,7 +107,10 @@ const MyPosts = ({ history, location, posts, fetchMyPosts }) => {
 };
 
 const mapStateToProps = (state) => ({
-  posts: state.posts,
+  posts: state.rootposts.posts,
+  loading: state.rootposts.loading,
 });
 
-export default connect(mapStateToProps, { fetchMyPosts })(MyPosts);
+export default connect(mapStateToProps, { fetchMyPosts, clearAllposts })(
+  MyPosts
+);

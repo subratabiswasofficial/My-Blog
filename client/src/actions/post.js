@@ -11,6 +11,7 @@ import {
   POST_LIKE_ERROR,
   COMMENT_ADDED,
   COMMENT_REMOVED,
+  CLEAR_POSTS,
 } from "./types";
 
 // Post Create
@@ -81,6 +82,17 @@ export const fetchAllposts = (page = 0) => async (dispatch) => {
     });
   } catch (err) {
     dispatch(setAlert("Error Loding Post", "error"));
+  }
+};
+
+// Clear All posts
+export const clearAllposts = () => (dispatch) => {
+  try {
+    dispatch({
+      type: CLEAR_POSTS,
+    });
+  } catch (err) {
+    dispatch(setAlert("Error Clearing Post", "error"));
   }
 };
 
